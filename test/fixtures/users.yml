@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  active: false
+  name: MyString
+  email: MyString
+  sum: 9.99
+  birthday: 
+  akey: MyString
+  akey_primary: MyString
+
+two:
+  active: false
+  name: MyString
+  email: MyString
+  sum: 9.99
+  birthday: 
+  akey: MyString
+  akey_primary: MyString

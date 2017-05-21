@@ -1,0 +1,2 @@
+class OrderIsSector < ApplicationRecord
+end

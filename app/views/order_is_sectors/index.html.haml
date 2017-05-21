@@ -1,0 +1,29 @@
+ 
+
+
+
+%h1{ style: ' color:green; ' }
+  =@main_page_content_tmp.html_safe
+
+%hr/
+
+
+
+-#________________________________________________________________________________
+
+
+
+%h1{ style: ' color:green; ' }
+  Форма оформлення замовлення на iснуючий сегмент:
+
+= form_for :user do |f|
+
+  Name:  
+  =f.text_field :name
+  %br/
+  
+  Email: 
+  =f.text_field :email
+  %br/
+  
+  = f.submit  
