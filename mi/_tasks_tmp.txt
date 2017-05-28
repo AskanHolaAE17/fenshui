@@ -1,0 +1,2 @@
+New mail systems:
+https://launchschool.com/blog/handling-emails-in-rails
