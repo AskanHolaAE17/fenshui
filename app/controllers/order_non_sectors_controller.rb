@@ -11,7 +11,7 @@ before_action :root_path, only: [:create]
     akey_start = params[:akey_start].to_s
     
     if User.exists?(id: user_id) and @user = User.find(user_id) and @user.akey[0..1] == akey_start
-      @order_is_sector = (@user.order_is_sectors.where payed: false).first
+      @order_is_sector = (@user.order_non_sectors.where payed: false).first
       
       @order_non_sector        = @user.order_non_sectors.build
       @order_non_sector.akey   = akey      
@@ -21,7 +21,7 @@ before_action :root_path, only: [:create]
       
       if @order_non_sector.save
         redirect_to root_path + 'order_non_sectors/info_page_client'   # change state to TRUE after success pay   ## after payment system add
-        OrderNonSectorMailer.ask_human(@user).try(:deliver)
+        OrderNonSectorMailer.human_consult(@user).try(:deliver)
       else
        redirect_to 'https://google.com/'  
       end  

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    
+    <style>
+      h1, h2 {
+        color:green;
+      }    
+    </style>
+    
+  </head>
+  <body>
+
+    <p>
+      Користувач із Email`ом 
+      <br/>
+      <%= @user.email %>
+      <br/>
+      бажає проконсультуватись із спеціалістом.
+    </p>
+    
+    <p>
+      Відсутній сегмент: <%= @order.segment %>
+    </p>
+    
+    <p>
+      Щоб відповіси, 
+      <br/>
+      заповніть: <a href= <%= @human_feedback_form_link %> >Форму</a>
+    </p>
+    
+    <hr/>
+    
+    <p>
+      З повагою, 
+      <br/>
+      <a href= <%= @root_path %> >FenShui.Space</a> -
+      <br/>
+      Сайт фен шуй знань.
+    </p>
+
+  </body>
+</html>
