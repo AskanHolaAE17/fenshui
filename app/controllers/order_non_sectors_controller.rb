@@ -48,10 +48,10 @@ before_action :root_path, only: [:create]
   def feedback_form
     
     user_id = params[:u_id]
-    user_akey_start = params[:o_akey]
+    user_akey_start = params[:u_akey]
     
     order_id   = params[:o_id]
-    order_akey = params[:o_akey]
+    order_akey_start = params[:o_akey]
     
     if User.exists?(id: user_id) and user = User.find(user_id) and user.akey[0..1] == user_akey_start and OrderNonSector.exists?(id: order_id) and order_non_sector = OrderNonSector.find(order_id) and order_non_sector.akey[0..1] == order_akey_start   
       @user = user
