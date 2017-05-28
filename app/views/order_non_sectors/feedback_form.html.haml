@@ -1,0 +1,25 @@
+ 
+
+
+%h1.text-success
+  Форма консультації за відсутнім сектором #{@order_non_sector.sector} 
+  %br/
+  для #{@user.email} :
+
+  
+= form_for @order_non_sector, url: { controller: 'order_non_sectors', action: 'send_answer' } do |f|
+
+  Інструкція:  
+  =f.text_field :answer,  type:         'text', 
+                          required:     '',
+                          maxlength:    10000,
+                          rows:         '10', 
+                          cols:         '70'
+
+  %br/
+  
+  
+  = f.hidden_field :id,      value: @order_non_sector.id
+  = f.hidden_field :akey,    value: @order_non_sector.akey[0..1]
+  
+  = f.submit 'Надiслати', class: ' btn btn-success btn-lg '
