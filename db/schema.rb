@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170528224804) do
+ActiveRecord::Schema.define(version: 20170529010301) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -56,6 +56,22 @@ ActiveRecord::Schema.define(version: 20170528224804) do
   end
 
   create_table "order_is_sectors", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "payed",         default: false
+    t.string   "sector"
+    t.integer  "sector_id"
+    t.decimal  "price"
+    t.decimal  "exchange_rate"
+    t.decimal  "currency"
+    t.string   "akey"
+    t.string   "akey_primary"
+    t.boolean  "done",          default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.datetime "birthday"
+  end
+
+  create_table "order_non_sectors", force: :cascade do |t|
     t.integer  "user_id"
     t.boolean  "payed",         default: false
     t.string   "sector"

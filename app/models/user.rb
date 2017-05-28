@@ -1,6 +1,9 @@
 class User < ApplicationRecord
 
   has_many :order_is_sectors
+  has_many :order_non_sectors
+  
+  
   
   before_save { |user| user.email = user.email.downcase }
   

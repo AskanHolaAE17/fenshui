@@ -21,7 +21,7 @@ before_action :root_path, only: [:create, :update]
     @user.akey = akey
       
     if @user.save      
-      @order_is_sector = @user.order_is_sectors.build
+      @order_is_sector      = @user.order_is_sectors.build
       @order_is_sector.akey = akey      
       
 
@@ -88,7 +88,7 @@ before_action :root_path, only: [:create, :update]
       @user.birthday = params[:order_is_sector][:birthday]
       
       if @user.save and @order_is_sector.save
-        redirect_to root_path + 'order_is_sectors/info_page'   # chenge state to TRUE after success pay     
+        redirect_to root_path + 'order_is_sectors/info_page'   # change state to TRUE after success pay     
         OrderIsSectorMailer.feedback(@user).try(:deliver)
       else
        redirect_to 'https://google.com/'  

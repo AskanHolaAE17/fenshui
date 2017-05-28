@@ -1,4 +1,4 @@
-class OrderIsSectorMailer < ApplicationMailer
+class OrderNonSectorMailer < ApplicationMailer
   
   
   default from: 'admin@fenshui.space'
