@@ -1,0 +1,26 @@
+
+
+
+%h1.text-success
+  Форма додаткової iнформацiї:
+
+  
+= form_for @order_is_sector, url: { action: 'update' } do |f|
+
+  Сектор:  
+  =f.text_field    :sector,  type:         'text', 
+                             required:     '', 
+                             placeholder:  'Выберите сектор (Ю, С ...)'
+  %br/
+  
+    
+  = f.hidden_field :id,      value: @order_is_sector.id
+  = f.hidden_field :akey,    value: @order_is_sector.akey[0..1]
+  
+  
+  = f.submit 'Надiслати',    class: ' btn btn-success btn-lg '
+
+
+
+
+

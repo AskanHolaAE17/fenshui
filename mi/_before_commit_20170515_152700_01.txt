@@ -1,1 +1,2 @@
 .yml
+photo in /mi - compress
