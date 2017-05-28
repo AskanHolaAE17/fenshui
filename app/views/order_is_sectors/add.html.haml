@@ -3,15 +3,31 @@
 
 %h1.text-success
   Форма додаткової iнформацiї:
+%br/  
 
+  
   
 = form_for @order_is_sector, url: { action: 'update' } do |f|
 
   Сектор:  
   =f.text_field    :sector,  type:         'text', 
                              required:     '', 
-                             placeholder:  'Выберите сектор (Ю, С ...)'
+                             placeholder:  'Выберите сектор (ПIВДЕНЬ, ЗАХIД ...)',
+                             maxlength:    100
   %br/
+  %br/
+  
+  
+  Дата рождения:
+  = f.date_select :birthday,            type:        'datetime',
+                                        required:    '', 
+                                        maxlength:   100,
+                                        start_year:  @year_start,
+                                        end_year:    @year_end,
+                                        order:       [:day, :month, :year]
+  %br/
+  %br/
+                                        
   
     
   = f.hidden_field :id,      value: @order_is_sector.id

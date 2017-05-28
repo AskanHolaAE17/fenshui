@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   match 'order_is_sectors/add/:user_id/:akey_start/:order_id',       to: 'order_is_sectors#add',                                  via: 'get'  
   
   
-  post  'order_is_sectors/update',                                   to: 'order_is_sectors#update'  
+  patch  'order_is_sectors/update',                                   to: 'order_is_sectors#update'  
+  get 'order_is_sectors/info_page'
       
             
   

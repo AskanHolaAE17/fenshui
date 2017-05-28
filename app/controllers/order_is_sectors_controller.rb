@@ -57,6 +57,8 @@ before_action :root_path, only: [:create, :update]
     
     if User.exists?(id: user_id) and @user = User.find(user_id) and OrderIsSector.exists?(id: order_is_sector_id) and @order_is_sector = OrderIsSector.find(order_is_sector_id)
        @order_is_sector = (@user.order_is_sectors.where payed: false).first
+       @year_start = Time.now.year 
+       @year_end   = @year_start + 1
       
        unless @order_is_sector and @order_is_sector.akey[0..1].to_s == akey_start
          redirect_to 'https://google.com/'
@@ -75,24 +77,45 @@ before_action :root_path, only: [:create, :update]
 
   def update
     
-    @id = params[:id]
-    @akey_start = params[:akey]
+    id = params[:order_is_sector][:id]
+    akey_start = params[:order_is_sector][:akey]
     
-    if OrderIsSector.exists?(id: id) and @order_is_sector = OrderIsSector.find(id) and @order_is_sector.akey[0..1] == @akey_start
-      @order_is_sector.sector = params[:sector] 
+    if OrderIsSector.exists?(id: id) and @order_is_sector = OrderIsSector.find(id) and @order_is_sector.akey[0..1] == akey_start
+      @order_is_sector.sector = params[:order_is_sector][:sector] 
+      @order_is_sector.price  = (Payment.find_by title: 'order_is_sector_price').value
+      
+      @user = User.find(@order_is_sector.user_id)
+      @user.birthday = params[:order_is_sector][:birthday]
+      
+      if @user.save and @order_is_sector.save
+        redirect_to root_path + 'order_is_sectors/info_page'   # chenge state to TRUE after success pay
+      else
+       redirect_to 'https://google.com/'  
+      end  
          
     else
        redirect_to 'https://google.com/'  
     end      
       
   end  
+  
+  
+#_____________________________________________________________________________________________________________________________________________ 
+
+
+  
+  def info_page     
+    
+    
+    
+  end    
 #_____________________________________________________________________________________________________________________________________________    
 
     
   
   private  
     def root_path
-      root_path = Constant.find_by title: 'root_path'
+      root_path = (Constant.find_by title: 'root_path').value
     end  
   
     
