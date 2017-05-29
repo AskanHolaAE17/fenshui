@@ -78,8 +78,11 @@ before_action :root_path, only: [:create]
       
       
       if @order_non_sector.save        
-        #OrderNonSectorMailer.human_consult(@user).try(:deliver)
+        @user = User.find(@order_non_sector.user_id)
+        
+        OrderNonSectorMailer.send_human_answer_to_client(@user).try(:deliver)        
         redirect_to root_path + 'order_non_sectors/success'   
+        
       else
        redirect_to 'https://google.com/'  
       end  

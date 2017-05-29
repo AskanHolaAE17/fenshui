@@ -13,6 +13,20 @@ class OrderNonSectorMailer < ApplicationMailer
     
     mail(to: 'mi.creator@yahoo.com', subject: 'Замовлення консультаії зі спеціалістом')    
   end
+
+
+#_____________________________________________________________________________________________________________________________________________
+
+
+  
+  def send_human_answer_to_client(user)
+    @user  = user
+    @order = (@user.order_non_sectors.where payed: false).first
+    
+    @root_path = (Constant.find_by title: 'root_path').value
+    
+    mail(to: @user.email, subject: 'Інструкція від спеціаліста')    
+  end
   
   
 end
