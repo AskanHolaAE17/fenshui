@@ -15,7 +15,10 @@ Rails.application.routes.draw do
   
   
   match  'order_non_sector/feedback_form/:u_id/:o_akey/:o_id/:u_akey',    to: 'order_non_sectors#feedback_form',                    via: 'get'    
-      
+  patch  'order_non_sectors/send_answer',                                 to: 'order_non_sectors#send_answer'             
+  
+  get    'order_non_sectors/success'
+  
             
   
   root 'order_is_sectors#index'
