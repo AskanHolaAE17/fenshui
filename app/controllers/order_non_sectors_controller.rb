@@ -20,7 +20,7 @@ before_action :root_path, only: [:create]
       
       
       if @order_non_sector.save        
-        OrderNonSectorMailer.human_consult(@user).try(:deliver)
+        #OrderNonSectorMailer.human_consult(@user).try(:deliver)
         redirect_to root_path + 'order_non_sectors/info_page'   # change state to TRUE after success pay   ## after payment system add
       else
        redirect_to 'https://google.com/'  
@@ -80,7 +80,7 @@ before_action :root_path, only: [:create]
       if @order_non_sector.save        
         @user = User.find(@order_non_sector.user_id)
         
-        OrderNonSectorMailer.send_human_answer_to_client(@user).try(:deliver)        
+        #OrderNonSectorMailer.send_human_answer_to_client(@user).try(:deliver)        
         redirect_to root_path + 'order_non_sectors/success'   
         
       else
