@@ -1,4 +1,4 @@
-class AddOrderIsSectorPriceToPayments < ActiveRecord::Migration
+class AddInfoOrderIsSectorPriceToPayments < ActiveRecord::Migration
 
   
   

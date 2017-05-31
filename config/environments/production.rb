@@ -86,14 +86,20 @@ Rails.application.configure do
   
   config.action_mailer.perform_deliveries = true 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = {host: 'http://fenshui.herokuapp.com/'}
-  # SMTP settings for gmail
+  config.action_mailer.default_url_options = {host: ENV['site_root']}   
+
+ 
   config.action_mailer.smtp_settings = {
-   :address              => "smtp.gmail.com",
-   :port                 => 587,
-   :user_name            => ENV['gmail_username'],
-   :password             => ENV['gmail_password'],
-   :authentication       => "plain",
-   :enable_starttls_auto => true
-  }  
+    address:               ENV['mailing_address'],
+    port:                  ENV['mailing_port'],
+    #port:                  465,    
+    #---domain:                'localhost:3000',
+    user_name:             ENV['mailing_user_name'],
+    password:              ENV['mailing_password'],
+    #---  tls:                    true,
+    authentication:        'plain',
+    enable_starttls_auto:   true      
+  }
+  
+  config.action_mailer.perform_deliveries = true  
 end
