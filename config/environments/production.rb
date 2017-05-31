@@ -84,8 +84,14 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   
-  config.action_mailer.perform_deliveries = true 
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true  
+
+
+  
   config.action_mailer.delivery_method = :smtp
+<<<<<<< HEAD
   config.action_mailer.default_url_options = {host: ENV['site_root']}   
 
  
@@ -96,10 +102,27 @@ Rails.application.configure do
     #---domain:                'localhost:3000',
     user_name:             ENV['mailing_user_name'],
     password:              ENV['mailing_password'],
+=======
+  config.action_mailer.default_url_options = {host: 'https://fenshui.herokuapp.com/'}   
+
+ 
+  config.action_mailer.smtp_settings = {
+    address:               'smtp.gmail.com',
+    port:                  537,
+    #port:                  465,    
+    #---domain:                'localhost:3000',
+    user_name:             'be.in.pair@gmail.com',
+    password:              'jET9kLamurf3rMI5L2gAP9jfYp6DnYc%bA1
+',
+>>>>>>> ab51f6212ecb17b335859493472a4e6793637b3b
     #---  tls:                    true,
     authentication:        'plain',
     enable_starttls_auto:   true      
   }
   
+<<<<<<< HEAD
   config.action_mailer.perform_deliveries = true  
+=======
+  config.action_mailer.perform_deliveries = true   
+>>>>>>> ab51f6212ecb17b335859493472a4e6793637b3b
 end
