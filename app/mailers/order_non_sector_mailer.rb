@@ -11,7 +11,7 @@ class OrderNonSectorMailer < ApplicationMailer
     @root_path = (Constant.find_by title: 'root_path').value
     @human_feedback_form_link = @root_path + 'order_non_sector/feedback_form/' + @user.id.to_s + '/' + @order.akey[0..1] + '/' + @order.id.to_s + '/' + @user.akey[0..1]
     
-    mail(to: 'mi.creator@yahoo.com', subject: 'Замовлення консультаії зі спеціалістом')    
+    mail(to: 'vitalina.liane@gmail.com', subject: 'ЛИСТ ДЛЯ АДМІНА: Замовлення консультаії зі спеціалістом')    
   end
 
 
