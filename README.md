@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Psychologist intervened, cancelling implosion, crisis avoided 
