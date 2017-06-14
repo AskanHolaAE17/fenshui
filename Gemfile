@@ -28,6 +28,8 @@ gem 'country_select', github: 'stefanpenner/country_select'
 gem 'devise'
 gem 'mail'
 
+gem 'liqpay', github: 'liqpay/sdk-ruby'
+
 gem 'passenger'
 gem 'heroku'
 gem 'puma-heroku'

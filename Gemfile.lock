@@ -18,6 +18,12 @@ GIT
       sprockets (< 4.1)
 
 GIT
+  remote: https://github.com/liqpay/sdk-ruby.git
+  revision: 2970cc6a376835e84bfb812e3d9f5c7a108f5f71
+  specs:
+    liqpay (0.0.1)
+
+GIT
   remote: https://github.com/stefanpenner/country_select.git
   revision: fb476551aa61e68af2175aeb4d097148e6904a34
   specs:
@@ -314,6 +320,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   json
+  liqpay!
   listen (~> 3.0.5)
   mail
   passenger

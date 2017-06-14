@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   
   
   match  'order_non_sector/create/:user_id/:akey_start',                  to: 'order_non_sectors#create',                           via: 'get'    
+  get    'order_non_sectors/success_page'
   get    'order_non_sectors/info_page'
   
   
