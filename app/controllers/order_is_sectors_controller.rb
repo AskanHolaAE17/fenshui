@@ -191,21 +191,68 @@ before_action :root_path, only: [:create, :update]
 
   def end_form_show
     
+    user_id = params[:user_id]
+    akey_start = params[:akey_start].to_s        
+    order_is_sector_id = params[:order_id]
     
+    if User.exists?(id: user_id) and @user = User.find(user_id) and OrderIsSector.exists?(id: order_is_sector_id) and @order_is_sector = OrderIsSector.find(order_is_sector_id)
+       @order_is_sector = @user.order_is_sectors.last
+       @year_start = Time.now.year 
+       @year_end   = @year_start + 1
+      
+       unless @order_is_sector and @order_is_sector.akey[0..1].to_s == akey_start
+         #redirect_to 'https://google.com/'
+       end  
+      
+    else
+       redirect_to 'https://google.com/'
+    end  
     
   end    
   
 #_____________________________________________________________________________________________________________________________________________  
   
 
-  def feedback
-    
-    OrderIsSectorMailer.feedback(@user).try(:deliver)
-    
-  end    
-#_____________________________________________________________________________________________________________________________________________   
+  def feedback_info_page      
+
 
     
+  end   
+  
+#_____________________________________________________________________________________________________________________________________________   
+  
+
+  def end
+
+    id = params[:order_is_sector][:id]
+    akey_start = params[:order_is_sector][:akey]
+    
+    
+    
+    if OrderIsSector.exists?(id: id) and @order_is_sector = OrderIsSector.find(id) and @order_is_sector.akey[0..1] == akey_start
+      @order_is_sector.sector = params[:order_is_sector][:sector]
+      @order_is_sector.orientation = params[:order_is_sector][:orientation] 
+      @order_is_sector.price  = (Payment.find_by title: 'order_is_sector_price').value
+      
+      @user = User.find(@order_is_sector.user_id)
+      @user.birthday = params[:order_is_sector][:birthday]
+      #@user.update_attribute(:birthday, params[:order_is_sector][:birthday])
+      
+      if @user.save and @order_is_sector.save                    
+
+        OrderIsSectorMailer.feedback(@user).try(:deliver)
+        
+      else
+       redirect_to 'https://google.com/'  
+      end  
+         
+    else
+       redirect_to 'https://google.com/'  
+    end       
+    
+  end   
+#_____________________________________________________________________________________________________________________________________________   
+  
   
   private  
     def root_path
