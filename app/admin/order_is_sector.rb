@@ -4,7 +4,7 @@ ActiveAdmin.register OrderIsSector do
 #
 # permit_params :list, :of, :attributes, :on, :model
   
-  permit_params :user_id, :payed, :sector, :sector_id, :price, :exchange_rate, :currency, :akey, :akey_primary, :done, :birthday
+  permit_params :user_id, :payed, :sector, :sector_id, :price, :exchange_rate, :currency, :akey, :akey_primary, :done, :birthday, :orientation
                                                      
 #
 # or
