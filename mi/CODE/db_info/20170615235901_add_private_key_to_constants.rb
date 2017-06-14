@@ -1,4 +1,4 @@
-class AddInfoRootPathToConstants < ActiveRecord::Migration
+class AddPrivateKeyToConstants < ActiveRecord::Migration
 
   
   
