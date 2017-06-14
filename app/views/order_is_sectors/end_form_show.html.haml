@@ -1,0 +1,40 @@
+
+
+
+%h1.text-success
+  Форма додаткової iнформацiї:
+%br/  
+
+  
+  
+= form_for @order_is_sector, url: { action: 'feedback' } do |f|
+
+  Оберiть сектор:  
+  =f.select :sector, options_for_select([ 'Семья', 'Здоровье', 'Известность', 'Богатство', '...' ]), required: ''
+  
+  %br/
+  %br/
+  
+    
+  Дата рождения:
+  = f.date_select :birthday,            type:        'datetime',
+                                        required:    '', 
+                                        maxlength:   100,
+                                        start_year:  @year_start,
+                                        end_year:    @year_end,
+                                        order:       [:day, :month, :year]
+  %br/
+  %br/
+                                        
+  
+    
+  = f.hidden_field :id,      value: @order_is_sector.id
+  = f.hidden_field :akey,    value: @order_is_sector.akey[0..1]
+  
+  
+  = f.submit 'Отримати результати',    class: ' btn btn-success btn-lg '
+
+
+
+
+

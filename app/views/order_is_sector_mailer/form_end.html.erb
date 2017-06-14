@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    
+    <style>
+      h1, h2 {
+        color:green;
+      }    
+    </style>
+    
+  </head>
+  <body>
+  
+    <h1><%= @user.name %>,</h1>
+    <h2>
+      для завершення оформлення замовлення
+    </h2>
+    
+    <p>      
+      перейдiть за 
+      <a href= <%= @end_form %> >посиланням</a>
+      <a href= <%= @root_path %> >FenShui.Space</a>
+    </p>
+    
+    <hr/>
+    
+    <p>
+      З повагою, 
+      <br/>
+      <a href= <%= @root_path %> >FenShui.Space</a> -
+      <br/>
+      Сайт фен шуй знань.
+    </p>
+
+  </body>
+</html>

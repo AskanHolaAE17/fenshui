@@ -117,8 +117,8 @@ before_action :root_path, only: [:create, :update]
         :amount           => (Payment.find_by title: 'order_is_sector_price').value,
         :currency         => 'UAH',
         :description      => 'Оплата заказа',
-        :server_url       => root_path + 'order_is_sectors/success_page' + user_id.to_s,
-        :result_url       => root_path + 'order_is_sectors/info_page',
+        :server_url       => root_path + 'order_is_sectors/success_page/' + user_id.to_s,
+        :result_url       => root_path + 'order_is_sectors/info_page/' + user_id.to_s,
         :sandbox          => @pay_way        
       }, liqpay, public_key, api_version)        
       
@@ -157,27 +157,50 @@ before_action :root_path, only: [:create, :update]
 
   
   def info_page     
-  end    
-  
-  
-#_____________________________________________________________________________________________________________________________________________    
-
-
-  
-  def success_page     
+    
     user_id = params[:user_id]
     @user   = User.find(user_id)
     @order  = @user.order_is_sectors.last
     @order.payed = true
     @order.save
-    OrderIsSectorMailer.feedback(@user).try(:deliver)
+    
+    OrderIsSectorMailer.form_end(@user).try(:deliver)    
+    
+  end    
+  
+  
+#_____________________________________________________________________________________________________________________________________________    
+
+
+  
+  def success_page   
+
+    user_id = params[:user_id]
+    @user   = User.find(user_id)
+    @order  = @user.order_is_sectors.last
+    @order.payed = true
+    @order.save
+    
+    OrderIsSectorMailer.form_end(@user).try(:deliver)
+    
   end    
   
   
 #_____________________________________________________________________________________________________________________________________________    
   
 
+  def end_form_show
+    
+    
+    
+  end    
+  
+#_____________________________________________________________________________________________________________________________________________  
+  
+
   def feedback
+    
+    OrderIsSectorMailer.feedback(@user).try(:deliver)
     
   end    
 #_____________________________________________________________________________________________________________________________________________   
