@@ -233,14 +233,26 @@ before_action :root_path, only: [:create, :update]
       @order_is_sector.sector = params[:order_is_sector][:sector]
       @order_is_sector.orientation = params[:order_is_sector][:orientation] 
       @order_is_sector.price  = (Payment.find_by title: 'order_is_sector_price').value
+      #@order_is_sector.birthday = params[:order_is_sector][:birthday]      
+      @order_is_sector.update_attributes(birthday_params)
       
       @user = User.find(@order_is_sector.user_id)
-      @user.birthday = params[:order_is_sector][:birthday]
+      #@user.birthday = params[:order_is_sector][:birthday]      
       #@user.update_attribute(:birthday, params[:order_is_sector][:birthday])
       
       if @user.save and @order_is_sector.save                    
 
-        OrderIsSectorMailer.feedback(@user).try(:deliver)
+        results_sector = (Sector.find_by sector: @order_is_sector.sector).description
+        
+        result_date = if @order_is_sector.birthday.month.in?(1..6)
+          'concerning the month'
+        else
+          'згiдно iз датою народження'
+        end
+        
+        results = results_sector + result_date
+        
+        OrderIsSectorMailer.feedback(@user, results).try(:deliver)
         
       else
        redirect_to 'https://google.com/'  
@@ -264,4 +276,8 @@ before_action :root_path, only: [:create, :update]
       params.require(:user).permit(:name, :email, :akey)
     end  
 
+    def birthday_params
+      params.require(:order_is_sector).permit(:birthday)
+    end  
+    
 end

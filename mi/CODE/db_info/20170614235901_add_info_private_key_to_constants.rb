@@ -1,4 +1,4 @@
-class AddPrivateKeyToConstants < ActiveRecord::Migration
+class InfoAddPrivateKeyToConstants < ActiveRecord::Migration
 
   
   
