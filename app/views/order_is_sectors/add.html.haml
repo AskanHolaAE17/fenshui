@@ -9,24 +9,90 @@
   
 = form_for @order_is_sector, url: { action: 'update' } do |f|
 
-  Сектор:  
-  =f.text_field    :sector,  type:         'text', 
-                             required:     '', 
-                             placeholder:  'Выберите сектор (ПIВДЕНЬ, ЗАХIД ...)',
-                             maxlength:    100
+  -#Сектор:  
+  -#=f.text_field    :sector,  type:         'text', 
+  -#                           required:     '', 
+  -#                           placeholder:  'Выберите сектор (ПIВДЕНЬ, ЗАХIД ...)',
+  -#                           maxlength:    100
+  -#%br/
+  -#%br/
+  
+  
+  Розташування дверiв 
+  вiдносно центру кiмнати:
   %br/
+  %br/
+
+  
+  %label
+    =f.radio_button    :orientation,  'pn-zh', checked: true, 
+                               required:     '' 
+    ПIВНIЧНИЙ-ЗАХIД           
+    = image_tag 'radio/sh.png'
+    
+  
+  %label
+    =f.radio_button    :orientation,  'pn', 
+                               required:     '' 
+    ПIВНIЧ                    
+    = image_tag 'radio/sh.png'
+  
+  
+  %label
+    =f.radio_button    :orientation,  'pn-sh', 
+                               required:     '' 
+    ПIВНIЧНИЙН-СХIД    
+    = image_tag 'radio/sh.png'
+  
+  
+  %label
+    =f.radio_button    :orientation,  'sh', 
+                               required:     '' 
+    СХIД
+    = image_tag 'radio/sh.png'
+  
+
+  
+  
+  %label
+    =f.radio_button    :orientation,  'zh', 
+                               required:     '' 
+    ЗАХIД           
+    = image_tag 'radio/sh.png'
+    
+  
+  %label
+    =f.radio_button    :orientation,  'pd-zh', 
+                               required:     '' 
+    ПIВДЕННИЙ-ЗАХIД                    
+    = image_tag 'radio/sh.png'
+  
+  
+  %label
+    =f.radio_button    :orientation,  'pd', 
+                               required:     '' 
+    ПIВДЕНЬ
+    = image_tag 'radio/sh.png'
+  
+  
+  %label
+    =f.radio_button    :orientation,  'pd-sh', 
+                               required:     '' 
+    ПIВДЕННИЙ-СХIД
+    = image_tag 'radio/sh.png'  
+  
   %br/
   
   
-  Дата рождения:
-  = f.date_select :birthday,            type:        'datetime',
-                                        required:    '', 
-                                        maxlength:   100,
-                                        start_year:  @year_start,
-                                        end_year:    @year_end,
-                                        order:       [:day, :month, :year]
-  %br/
-  %br/
+  -#Дата рождения:
+  -#= f.date_select :birthday,            type:        'datetime',
+  -#                                      required:    '', 
+  -#                                      maxlength:   100,
+  -#                                      start_year:  @year_start,
+  -#                                      end_year:    @year_end,
+  -#                                      order:       [:day, :month, :year]
+  -#%br/
+  -#%br/
                                         
   
     
