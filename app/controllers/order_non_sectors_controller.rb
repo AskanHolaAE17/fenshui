@@ -1,6 +1,6 @@
 class OrderNonSectorsController < ApplicationController
   
-  
+protect_from_forgery with: :null_session  
 before_action :root_path, only: [:create]  
   
 

@@ -1,6 +1,6 @@
 class OrderIsSectorsController < ApplicationController
   
-  
+protect_from_forgery with: :null_session  
 before_action :root_path, only: [:create, :update]  
   
 
@@ -81,10 +81,10 @@ before_action :root_path, only: [:create, :update]
     akey_start = params[:order_is_sector][:akey]
     
     
-    def create_pay_link
+    def create_pay_link(user_id)
       
       public_key   = 'i35395571497'
-      private_key  = ENV['lp_private_key'] + (Constant.find_by title: 'private_key').value
+      private_key  = 'irj04vFv5A7g7pdVVd' + (Constant.find_by title: 'private_key').value
       api_version  = 3
       @pay_way     = 1
       
@@ -117,7 +117,7 @@ before_action :root_path, only: [:create, :update]
         :amount           => (Payment.find_by title: 'order_is_sector_price').value,
         :currency         => 'UAH',
         :description      => 'Оплата заказа',
-        :server_url       => root_path + 'order_is_sectors/success_page',
+        :server_url       => root_path + 'order_is_sectors/success_page' + user_id.to_s,
         :result_url       => root_path + 'order_is_sectors/info_page',
         :sandbox          => @pay_way        
       }, liqpay, public_key, api_version)        
@@ -138,10 +138,8 @@ before_action :root_path, only: [:create, :update]
       #@user.birthday = params[:order_is_sector][:birthday]
       #@user.update_attribute(:birthday, params[:order_is_sector][:birthday])
       
-      if @user.save and @order_is_sector.save            
-        #OrderIsSectorMailer.feedback(@user).try(:deliver)
-        #redirect_to root_path + 'order_is_sectors/success_page'   # change state to TRUE after success pay 
-        pay_link = create_pay_link   
+      if @user.save and @order_is_sector.save                    
+        pay_link = create_pay_link(@user.id)   
         redirect_to pay_link
       else
        redirect_to 'https://google.com/'  
@@ -167,6 +165,12 @@ before_action :root_path, only: [:create, :update]
 
   
   def success_page     
+    user_id = params[:user_id]
+    @user   = User.find(user_id)
+    @order  = @user.order_is_sectors.last
+    @order.payed = true
+    @order.save
+    OrderIsSectorMailer.feedback(@user).try(:deliver)
   end    
   
   

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   
   patch  'order_is_sectors/update',                                       to: 'order_is_sectors#update'  
   get    'order_is_sectors/info_page'
+  post   'order_is_sectors/info_page',                                    to: 'order_is_sectors#info_page'        
+  match  'order_is_sectors/success/:user_id',                             to: 'order_is_sectors#success_page',                               via: 'get'  
   
   
   match  'order_non_sector/create/:user_id/:akey_start',                  to: 'order_non_sectors#create',                           via: 'get'    
@@ -17,8 +19,7 @@ Rails.application.routes.draw do
   
   match  'order_non_sector/feedback_form/:u_id/:o_akey/:o_id/:u_akey',    to: 'order_non_sectors#feedback_form',                    via: 'get'    
   patch  'order_non_sectors/send_answer',                                 to: 'order_non_sectors#send_answer'             
-  
-  get    'order_non_sectors/success'
+  get    'order_non_sectors/info_page'
   
             
   
